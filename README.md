@@ -1,27 +1,38 @@
 # Animal Image Classification (CNN & Transfer Learning)
+This project evaluates different CNN strategies to understand how architectural choices and training techniques affect model performance. Experiments focus on:
 
-This project focuses on building and optimizing a deep learning pipeline to classify animal images into four categories: **Bear, Elephant, Leopard, and Zebra**. The core objective is to demonstrate the transition from a custom-built baseline model to advanced techniques like **Transfer Learning** and **Data Augmentation**.
+- **VGG16** and **ResNet50**
+- Training from scratch vs. **transfer learning**
+- **Learning rate tuning**
+- **Data augmentation**
+- **Regularization**
 
-## Project Overview
-The project is structured as a series of controlled experiments to observe the impact of different deep learning strategies on model performance and generalization.
+## Experiments Summary
 
-### Workflow & Experiments
-- **Baseline Model:** A custom Convolutional Neural Network (CNN) architecture built from scratch. It served as the starting point for performance comparison.
-- **Transfer Learning (MobileNetV2):** Leveraged the pre-trained MobileNetV2 architecture to significantly boost accuracy and reduce training time.
-- **Data Augmentation:** Applied random rotations, flips, and zooms to the training set to improve model robustness against overfitting.
-- **Optimization:** Utilized Dropout layers and Batch Normalization to stabilize the learning process.
+- **VGG16 (from scratch):** Poor learning and low accuracy  
+- **ResNet50 (from scratch):** Better performance but overfitting observed  
+- **Transfer Learning (VGG16):** Faster convergence and higher accuracy  
+- **Learning Rate Tuning:** Larger learning rate (0.01) improved convergence  
+- **Data Augmentation:** Increased generalization and validation accuracy  
+- **Regularization:** Reduced overfitting but slightly lowered performance  
 
-## Technical Stack
-- **Framework:** TensorFlow / Keras
-- **Library:** NumPy, Matplotlib, OS
-- **Environment:** Developed and tested on Google Colab with T4 GPU support.
+## Final Models
 
-## Final Evaluation & Results
-Based on the experiments conducted in the notebook:
+### Best Model
+**Transfer Learning (VGG16) + LR = 0.01 + Data Augmentation**
 
-- **Baseline Model:** Showed initial learning but suffered from overfitting as the gap between training and validation accuracy widened.
-- **Transfer Learning Model:** After fine-tuning **MobileNetV2**, the model reached a much higher validation accuracy (approaching **96-98%**) with significantly lower loss.
-- **Conclusion:** The combination of Transfer Learning and Data Augmentation proved to be the most effective strategy, providing a stable and highly accurate classifier.
+- Validation Accuracy: **0.975**
+- Best generalization and stability
 
-## Dataset
-The model is trained on a specific animal dataset consisting of 4 classes (Bear, Elephant, Leopard, Zebra). The data was preprocessed and resized to **224x224** to match the input requirements of the pre-trained architectures.
+### Alternative Model
+**Transfer Learning + LR = 0.01 + Data Augmentation + Regularization**
+
+- Validation Accuracy: **0.943**
+- More stable but lower peak performance
+
+## Tools
+
+- Python
+- TensorFlow / Keras
+- NumPy
+- Matplotlib
